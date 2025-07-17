@@ -45,12 +45,15 @@ const finances = useFinances()
 function onFileSelected(event) {
   const files = event.target.files
 
+  finances.setLoading(true, 'Parsing CSV')
   Papa.parse(files[0], {
+    skipFirstNLines: 1,
+    skipEmptyLines: true,
     step(results) {
       finances.addRecord(results)
     },
     complete() {
-      console.info('complete')
+      finances.noMoreRecords()
     },
   })
 }
