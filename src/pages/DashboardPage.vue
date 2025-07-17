@@ -223,10 +223,10 @@ const closeDetails = () => {
                     </span>
                   </div>
                   <p class="text-sm text-gray-700 font-medium">
-                    {{ transaction.other_name || 'Unknown' }}
+                    {{ transaction.other_name || 'Unknown recipient' }}
                   </p>
                   <p v-if="transaction.free_comment" class="text-xs text-gray-600 mt-1">
-                    {{ transaction.free_comment }}
+                    {{ transaction.free_comment || transaction.structured_comment }}
                   </p>
                 </div>
               </div>
@@ -249,10 +249,10 @@ const closeDetails = () => {
                     </span>
                   </div>
                   <p class="text-sm text-gray-700 font-medium">
-                    {{ transaction.other_name || 'Unknown' }}
+                    {{ transaction.other_name || 'Unknown recipient' }}
                   </p>
                   <p v-if="transaction.free_comment" class="text-xs text-gray-600 mt-1">
-                    {{ transaction.free_comment }}
+                    {{ transaction.free_comment || transaction.structured_comment }}
                   </p>
                 </div>
               </div>

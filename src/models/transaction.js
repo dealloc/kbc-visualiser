@@ -4,7 +4,8 @@ import { parse } from 'date-fns'
 export class Transaction {
   constructor(row) {
     this.date = parse(trim(row.data[5]), 'dd/LL/yyyy', new Date())
-    this.currency = trim(row.data[7])
+    this.currency = trim(row.data[3])
+    this.valuta = trim(row.data[7])
     this.amount = trim(row.data[8])
     this.balance = trim(row.data[9])
     this.credit = trim(row.data[10])
