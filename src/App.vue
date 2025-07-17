@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+import LoadingPage from './pages/LoadingPage.vue'
+import UploadPage from './pages/UploadPage.vue'
+import { useFinances } from './stores/finances'
+
+const finances = useFinances()
+</script>
 
 <template>
-  <div class="flex flex-col items-center bg-white rounded-lg p-4 shadow">
-    <h1 class="text-lg font-bold">Upload KBC export</h1>
-    <h6>Your data never leaves your device</h6>
-  </div>
+  <LoadingPage v-if="finances.isLoading" />
+  <UploadPage v-else-if="!finances.hasRecords" />
 </template>

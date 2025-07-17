@@ -1,19 +1,27 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
+import { Transaction } from '@/models/transaction'
 
 export const useFinances = defineStore('finances', () => {
-  const parsing = ref(false)
-  const rows = ref([])
+  const isLoading = ref(false)
+  const loadingText = ref(null)
+  const records = ref([])
 
-  function pushFinanceData(row) {
-    if (row.data.length === 18) {
-      rows.value.push(row.data)
+  const hasRecords = computed(() => !isLoading.value && records.value.length !== 0)
+
+  function addRecord(row) {
+    if (row.data.length === 18 && row.errors.length === 0) {
+      console.info(new Transaction(row))
+    } else {
+      console.error('Failed to parse record:', row)
     }
   }
 
-  function completeFinanceData() {
-    console.info(rows)
+  return {
+    isLoading,
+    loadingText,
+    records,
+    hasRecords,
+    addRecord,
   }
-
-  return { parsing, pushFinanceData, completeFinanceData }
 })
