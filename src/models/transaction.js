@@ -1,8 +1,9 @@
 import { trim } from '@/utils/trim'
+import { parse } from 'date-fns'
 
 export class Transaction {
   constructor(row) {
-    this.date = trim(row.data[5])
+    this.date = parse(trim(row.data[5]), 'dd/LL/yyyy', new Date())
     this.currency = trim(row.data[7])
     this.amount = trim(row.data[8])
     this.balance = trim(row.data[9])

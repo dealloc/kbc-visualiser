@@ -16,6 +16,7 @@ export const useFinances = defineStore('finances', () => {
 
   function addRecord(row) {
     if (row.data.length === 18 && row.errors.length === 0) {
+      console.info(new Transaction(row))
       records.value.push(new Transaction(row))
     } else if (row.data.length === 1 && row.data[0] === '') {
       return
